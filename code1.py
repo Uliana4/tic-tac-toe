@@ -18,8 +18,8 @@ def take_input(player_token):   # Funkcja take_iinput przyjmuje parametr player_
         except:
             print ("Nieprawidłowe wejście. Proszę podać liczbę!")
             continue
-        if player_answer >= 1 and player_answer <= 9:
-            if (str(board[player_answer-1]) not in "XO"):
+        if player_answer >= 1 and player_answer <= 9:     # Ważne jest, abyśmy ograniczyli wybór użytkownika do liczb od 1 do 9 włącznie, ponieważ w sumie na naszym polu znajduje się 9 komórek, którym zostaną przypisane ikony krzyżyka lub Tac Toe
+            if (str(board[player_answer-1]) not in "XO"):       # W tym celu używamy konstrukcji if/else , aby upewnić się,że wybrana komórka nie jest zajęta.
                 board[player_answer-1] = player_token
                 valid = True
             else:
@@ -38,8 +38,8 @@ def check_win(board):
 # Pozostałó nam się utworzyć funkcję main, w której połączymy wszystkie opisane funkcje. Oraz warto pamiętać, że zwycięski symbol podczas rzutowania go na typ logiczny zwróci True
 def main(board):
     counter = 0
-    win = False
-    while not win:
+    no_win = True
+    while no_win:
         draw_board(board)
         if counter % 2 == 0:
             take_input("X")
